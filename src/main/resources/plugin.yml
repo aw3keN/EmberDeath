@@ -1,0 +1,6 @@
+name: EmberDeath
+version: '${version}'
+main: com.aw3ken.emberdeath.EmberDeathPlugin
+api-version: '1.21'
+author: aw3keN
+description: Kicks players after death, plays a death sound, and sends a local death message.

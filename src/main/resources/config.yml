@@ -1,0 +1,30 @@
+# EmberDeath configuration
+# Colors support MiniMessage tags and HEX colors in the format &#RRGGBB.
+# Legacy colors such as &c and &l are also supported.
+
+death-message:
+  # Send a death message to nearby players in the deceased player's world.
+  enabled: true
+  # Maximum distance in blocks. Set to 0 to only notify players at the same location.
+  radius: 100.0
+  # Whether the deceased player should receive the message before being kicked.
+  include-deceased: false
+  format: '&#FF6B35&l[Death] &7<name> &#FF6B35died near you.'
+
+death-sound:
+  # Play the sound to nearby players in the deceased player's world.
+  enabled: true
+  sound: ENTITY_ELDER_GUARDIAN_CURSE
+  radius: 100.0
+  volume: 1.0
+  pitch: 1.0
+
+punishment:
+  # Apply a punishment after the death event has been processed.
+  enabled: true
+  # Available modes: KICK or BAN. BAN creates a permanent ban.
+  mode: KICK
+  # Text shown when mode is KICK.
+  kick-reason: '&#FF6B35&lEmberDeath\n\n&7You died.\n&8You may reconnect whenever you are ready.'
+  # Text shown when mode is BAN.
+  ban-reason: '&#FF3B30&lEmberDeath\n\n&7You died and have been permanently banned.\n&8Contact an administrator if this was unexpected.'
