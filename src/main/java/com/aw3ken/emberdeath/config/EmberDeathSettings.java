@@ -5,21 +5,54 @@ import java.util.logging.Logger;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 
-public record EmberDeathSettings(
-        boolean messageEnabled,
-        double messageRadius,
-        boolean includeDeceased,
-        String messageFormat,
-        boolean soundEnabled,
-        Sound sound,
-        double soundRadius,
-        float soundVolume,
-        float soundPitch,
-        boolean punishmentEnabled,
-        PunishmentMode punishmentMode,
-        String kickReason,
-        String banReason
-) {
+public final class EmberDeathSettings {
+    private final boolean messageEnabled;
+    private final double messageRadius;
+    private final boolean includeDeceased;
+    private final String messageFormat;
+    private final boolean soundEnabled;
+    private final Sound sound;
+    private final double soundRadius;
+    private final float soundVolume;
+    private final float soundPitch;
+    private final boolean punishmentEnabled;
+    private final PunishmentMode punishmentMode;
+    private final String kickReason;
+    private final String banReason;
+
+    private EmberDeathSettings(boolean messageEnabled, double messageRadius, boolean includeDeceased,
+            String messageFormat, boolean soundEnabled, Sound sound, double soundRadius, float soundVolume,
+            float soundPitch, boolean punishmentEnabled, PunishmentMode punishmentMode, String kickReason,
+            String banReason) {
+        this.messageEnabled = messageEnabled;
+        this.messageRadius = messageRadius;
+        this.includeDeceased = includeDeceased;
+        this.messageFormat = messageFormat;
+        this.soundEnabled = soundEnabled;
+        this.sound = sound;
+        this.soundRadius = soundRadius;
+        this.soundVolume = soundVolume;
+        this.soundPitch = soundPitch;
+        this.punishmentEnabled = punishmentEnabled;
+        this.punishmentMode = punishmentMode;
+        this.kickReason = kickReason;
+        this.banReason = banReason;
+    }
+
+    public boolean messageEnabled() { return messageEnabled; }
+    public double messageRadius() { return messageRadius; }
+    public boolean includeDeceased() { return includeDeceased; }
+    public String messageFormat() { return messageFormat; }
+    public boolean soundEnabled() { return soundEnabled; }
+    public Sound sound() { return sound; }
+    public double soundRadius() { return soundRadius; }
+    public float soundVolume() { return soundVolume; }
+    public float soundPitch() { return soundPitch; }
+    public boolean punishmentEnabled() { return punishmentEnabled; }
+    public PunishmentMode punishmentMode() { return punishmentMode; }
+    public String kickReason() { return kickReason; }
+    public String banReason() { return banReason; }
+
     public static EmberDeathSettings load(FileConfiguration config, Logger logger) {
         Sound sound;
         String soundName = config.getString("death-sound.sound", "ENTITY_ELDER_GUARDIAN_CURSE");

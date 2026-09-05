@@ -5,8 +5,8 @@ It can notify nearby players, play a death sound, and kick or permanently ban th
 
 ## Requirements
 
-- Minecraft/Paper `1.21`
-- Java `21`
+- Minecraft/Paper `1.16.5`, `1.17`, `1.18`, `1.19`, `1.20`, `1.21`, `26.1`, or `26.2`
+- Java `8` or newer
 
 ## Features
 
@@ -15,6 +15,7 @@ It can notify nearby players, play a death sound, and kick or permanently ban th
 - `KICK` or permanent `BAN` punishment modes.
 - Legacy `&` colors and HEX colors in the `&#RRGGBB` format.
 - Validation and safe fallbacks for invalid mode and sound settings.
+- Separate server-version adapter source files for every supported version.
 
 ## Installation
 
@@ -42,3 +43,7 @@ gradle --no-daemon clean build
 ```
 
 The generated plugin JAR is placed in `build/libs/`.
+
+The Gradle compile baseline is Spigot API `1.16.5`, which keeps the plugin's
+bytecode compatible with Java 8. The runtime adapters use the shared Bukkit API
+and are kept separately for each supported server version.

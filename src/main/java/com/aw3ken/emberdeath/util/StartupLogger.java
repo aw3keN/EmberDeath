@@ -14,7 +14,7 @@ public final class StartupLogger {
         logger.info(line);
         logger.info("  EMBERDEATH | Death punishment and local alert system");
         logger.info(line);
-        logger.info("  Version: " + plugin.getPluginMeta().getVersion());
+        logger.info("  Version: " + plugin.getDescription().getVersion());
         logger.info("  Author: aw3keN");
         logger.info("  Server: " + Bukkit.getName() + " " + Bukkit.getBukkitVersion());
         logger.info("  Death message: " + status(settings.messageEnabled()) + " | radius " + settings.messageRadius() + " blocks");

@@ -19,7 +19,7 @@ public final class PlayerDeathListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerDeath(PlayerDeathEvent event) {
-        Player deceased = event.getPlayer();
+        Player deceased = event.getEntity();
         effects.broadcastMessage(deceased);
         effects.playSound(deceased);
         effects.applyPunishment(deceased);

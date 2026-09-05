@@ -2,6 +2,7 @@ package com.aw3ken.emberdeath.service;
 
 import com.aw3ken.emberdeath.config.EmberDeathSettings;
 import com.aw3ken.emberdeath.util.MessageFormatter;
+import com.aw3ken.emberdeath.version.ServerVersionAdapter;
 import org.bukkit.BanList;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -10,10 +11,12 @@ public final class DeathEffectService {
     private final JavaPlugin plugin;
     private final EmberDeathSettings settings;
     private final MessageFormatter formatter = new MessageFormatter();
+    private final ServerVersionAdapter versionAdapter;
 
     public DeathEffectService(JavaPlugin plugin, EmberDeathSettings settings) {
         this.plugin = plugin;
         this.settings = settings;
+        this.versionAdapter = com.aw3ken.emberdeath.version.ServerVersionAdapters.detect();
     }
 
     public void broadcastMessage(Player deceased) {
@@ -55,10 +58,10 @@ public final class DeathEffectService {
                 // Add the ban without letting Bukkit disconnect the player first.
                 // The following component kick preserves colors on the client ban screen.
                 plugin.getServer().getBanList(BanList.Type.NAME)
-                        .addBan(name, formatter.plainText(settings.banReason(), name), null, plugin.getName());
-                deceased.kick(formatter.format(settings.banReason(), name));
+                        .addBan(name, formatter.format(settings.banReason(), name), null, plugin.getName());
+                versionAdapter.disconnect(deceased, formatter.format(settings.banReason(), name));
             } else {
-                deceased.kick(formatter.format(settings.kickReason(), name));
+                versionAdapter.disconnect(deceased, formatter.format(settings.kickReason(), name));
             }
         });
     }
